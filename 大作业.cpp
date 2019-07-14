@@ -1,44 +1,41 @@
-//publicº¯ÊıÊµ²Î²»¿ÉÒÔÊ¹ÓÃprivate³ÉÔ±£¿
-//mainÖĞcout<<c1ÆäºóÊä³öendlÔò³ö´í?
-//¶şÎ¬Êı×é´«ËÍÊ±²»ÄÜÖ±½Ó¿´³ÉÒ»¸öÖ¸Õë
 #include<iostream>
 #include<string.h>
 #include<iomanip>
-#define space 5//¾ØÕóĞĞÁĞÊıÈİÁ¿
-#define digit_size 3//Êä³öÊı×ÖÕ¼×Ö·û¿í¶È 
+#define space 5//çŸ©é˜µè¡Œåˆ—æ•°å®¹é‡
+#define digit_size 3//è¾“å‡ºæ•°å­—å å­—ç¬¦å®½åº¦ 
 using namespace std;
-int n_Re,n_Ima;//Êµ²¿¡¢Ğé²¿³¤¶È
+int n_Re,n_Ima;//å®éƒ¨ã€è™šéƒ¨é•¿åº¦
 
-//¸´ÊıÀà
+//å¤æ•°ç±»
 class Matrix{
 	public:
-		void display();//´òÓ¡¾ØÕóÄÚÈİ
+		void display();//æ‰“å°çŸ©é˜µå†…å®¹
 
-		Matrix();//Ä¬ÈÏ¹¹Ôì
+		Matrix();//é»˜è®¤æ„é€ 
 		Matrix(double Re[][space+1],double Ima[][space+1],int row,int col);
 
-		void turn ();//ÓÃÓÚ½«¶ÁÈëµÄ×Ö·û´®×ªÎªÕûĞÎÊı¾İ
-		void read_digit(string *al);//¶ÁÈ¡Êı¾İÎ»Êı
-		void read_size(string *al);//¶ÁÈ¡¾ØÕóĞĞÊıºÍÁĞÊı
-		double multiply_Re(double,double,double,double);//¸´Êı³Ë·¨º¯Êı 
+		void turn ();//ç”¨äºå°†è¯»å…¥çš„å­—ç¬¦ä¸²è½¬ä¸ºæ•´å½¢æ•°æ®
+		void read_digit(string *al);//è¯»å–æ•°æ®ä½æ•°
+		void read_size(string *al);//è¯»å–çŸ©é˜µè¡Œæ•°å’Œåˆ—æ•°
+		double multiply_Re(double,double,double,double);//å¤æ•°ä¹˜æ³•å‡½æ•° 
 		double multiply_Ima(double,double,double,double);
 		
 		friend istream & operator>>(istream &,Matrix &); 
 		friend ostream & operator<<(ostream &,Matrix &);
 
-		Matrix operator+ (Matrix &);//¼Ó¼õºÅÖØÔØÊµÏÖ¾ØÕó¼Ó¼õ
+		Matrix operator+ (Matrix &);//åŠ å‡å·é‡è½½å®ç°çŸ©é˜µåŠ å‡
 		Matrix operator- (Matrix &);
-		Matrix operator! ();//¸ĞÌ¾ºÅÖØÔØÊµÏÖ¾ØÕó×ªÖÃ 
-		Matrix operator* (Matrix &);//³ËºÅÖØÔØÊµÏÖ¾ØÕó³Ë·¨ 
+		Matrix operator! ();//æ„Ÿå¹å·é‡è½½å®ç°çŸ©é˜µè½¬ç½® 
+		Matrix operator* (Matrix &);//ä¹˜å·é‡è½½å®ç°çŸ©é˜µä¹˜æ³• 
 	private:
-		int n_row;//¾ØÕóĞĞÊı
-		int n_col;//ÁĞÊı
-		string array[space*(space+1)];//ÓÃ»§ÊäÈë×Ö·û´®Êı¾İ
-		double array_Re[space][space+1];//¸¡µãĞÍÊµ²¿ 
-		double array_Ima[space][space+1];//¸¡µãĞÍĞé²¿ 
+		int n_row;//çŸ©é˜µè¡Œæ•°
+		int n_col;//åˆ—æ•°
+		string array[space*(space+1)];//ç”¨æˆ·è¾“å…¥å­—ç¬¦ä¸²æ•°æ®
+		double array_Re[space][space+1];//æµ®ç‚¹å‹å®éƒ¨ 
+		double array_Ima[space][space+1];//æµ®ç‚¹å‹è™šéƒ¨ 
 };
 
-//¾ØÕó¼õ·¨ÖØÔØ 
+//çŸ©é˜µå‡æ³•é‡è½½ 
 Matrix Matrix::operator- (Matrix &cl){
 	double Re[space][space+1];
 	double Ima[space][space+1];
@@ -57,7 +54,7 @@ Matrix Matrix::operator- (Matrix &cl){
 	return Matrix(Re,Ima,n_row,n_col);
 }
 
-//¾ØÕó¼Ó·¨ÖØÔØ
+//çŸ©é˜µåŠ æ³•é‡è½½
 Matrix Matrix::operator+ (Matrix &cl){
 	double Re[space][space+1];
 	double Ima[space][space+1];
@@ -76,7 +73,7 @@ Matrix Matrix::operator+ (Matrix &cl){
 	return Matrix(Re,Ima,n_row,n_col);
 }
 
-//¾ØÕó×ªÖÃÖØÔØ
+//çŸ©é˜µè½¬ç½®é‡è½½
 Matrix Matrix::operator!(){
 	double Re_new[space][space+1];
 	double Ima_new[space][space+1];
@@ -91,7 +88,7 @@ Matrix Matrix::operator!(){
 		}
 //		cout<<1<<endl;
 	}
-	//×ªÖÃºóĞĞÁĞÊı½»»» 
+	//è½¬ç½®åè¡Œåˆ—æ•°äº¤æ¢ 
 	int mid=n_row;
 	n_row=n_col;
 	n_col=mid;
@@ -106,23 +103,23 @@ Matrix Matrix::operator!(){
 	return Matrix(Re_new,Ima_new,n_row,n_col);
 }
 
-//¾ØÕó³Ë·¨ÖØÔØ
+//çŸ©é˜µä¹˜æ³•é‡è½½
 Matrix Matrix::operator* (Matrix & cl){
 	double mid_Re=0;
 	double mid_Ima=0;
 	double Re_new[space][space+1];
 	double Ima_new[space][space+1];
-	//ÅĞ±ğÁ½¸ö¾ØÕóÊÇ·ñ¿É³Ë 
+	//åˆ¤åˆ«ä¸¤ä¸ªçŸ©é˜µæ˜¯å¦å¯ä¹˜ 
 	if(n_col!=cl.n_row){
 		cout<<"arrays not suit!"<<endl;
 		return Matrix();
 	}
-	//½øĞĞ³Ë·¨ 
+	//è¿›è¡Œä¹˜æ³• 
 	for(int i=0;i<n_row;i++){
 		for(int j=0;j<cl.n_col;j++){
 			for(int k=0,l=0;k<n_col;k++){
 				l=k;
-				//µ÷ÓÃ¸´Êı³Ë·¨º¯Êı 
+				//è°ƒç”¨å¤æ•°ä¹˜æ³•å‡½æ•° 
 				mid_Re+=multiply_Re(array_Re[i][k],array_Ima[i][k],cl.array_Re[k][j],cl.array_Ima[k][j]);
 				mid_Ima+=multiply_Ima(array_Re[i][k],array_Ima[i][k],cl.array_Re[k][j],cl.array_Ima[k][j]);
 			}
@@ -137,7 +134,7 @@ Matrix Matrix::operator* (Matrix & cl){
 	return Matrix(Re_new,Ima_new,n_row,cl.n_col);
 }
 
-//¸´Êı³Ë·¨º¯Êı
+//å¤æ•°ä¹˜æ³•å‡½æ•°
 double Matrix::multiply_Re(double Re_left,double Ima_left,double Re_right,double Ima_right){
 	return Re_left*Re_right-Ima_left*Ima_right;;
 }
@@ -158,9 +155,9 @@ Matrix::Matrix(){
 }
 
 Matrix::Matrix(double Re[][space+1],double Ima[][space+1],int row,int col){
-	n_row=row;//¶ÔĞÂ¾ØÕó¸³Öµ¾ØÕóĞĞÁĞÊı 
+	n_row=row;//å¯¹æ–°çŸ©é˜µèµ‹å€¼çŸ©é˜µè¡Œåˆ—æ•° 
 	n_col=col;
-	//¶ÔĞÂ¾ØÕó¸³Öµ
+	//å¯¹æ–°çŸ©é˜µèµ‹å€¼
 	for(int i=0;i<n_row;i++){ 
 		for(int j=0;j<n_col;j++){
 			array_Re[i][j]=Re[i][j];
@@ -174,7 +171,7 @@ Matrix::Matrix(double Re[][space+1],double Ima[][space+1],int row,int col){
 //	cout<<"n_row:"<<n_row<<"  n_col:"<<n_col<<endl;
 }
 
-//Á÷ÌáÈ¡ÔËËã·ûÖØÔØº¯Êı´òÓ¡¾ØÕó 
+//æµæå–è¿ç®—ç¬¦é‡è½½å‡½æ•°æ‰“å°çŸ©é˜µ 
 istream & operator>> (istream & Input,Matrix & cl){
 	string *al=cl.array;
 	cout<<"Input / to jump to next row,// to end"<<endl;
@@ -186,7 +183,7 @@ istream & operator>> (istream & Input,Matrix & cl){
 	return Input;
 }
 
-//²åÈëÔËËã·ûÖØÔØº¯Êı´òÓ¡¾ØÕó 
+//æ’å…¥è¿ç®—ç¬¦é‡è½½å‡½æ•°æ‰“å°çŸ©é˜µ 
 ostream & operator<<(ostream & Ouput,Matrix & cl){
 	string *al=cl.array;
 //	cout<<"The array is:"<<endl;
@@ -195,8 +192,8 @@ ostream & operator<<(ostream & Ouput,Matrix & cl){
 	for(int i=0;i<cl.n_row;i++){
 		cout<<"       ";
 		for(int j=0;j<cl.n_col;j++){
-			Ouput<<setiosflags(ios::left);//Êµ²¿Êä³ö
-			//Ğé²¿Êä³ö
+			Ouput<<setiosflags(ios::left);//å®éƒ¨è¾“å‡º
+			//è™šéƒ¨è¾“å‡º
 			if(cl.array_Re[i][j]>=0)
 				Ouput<<setw(digit_size)<<cl.array_Re[i][j];
 			else Ouput<<setw(digit_size)<<cl.array_Re[i][j];
@@ -205,7 +202,7 @@ ostream & operator<<(ostream & Ouput,Matrix & cl){
 				else if(cl.array_Ima[i][j]==-1) Ouput<<"-   j"<<"      ";
 				else if(cl.array_Ima[i][j]>0) Ouput<<"+"<<setw(digit_size)<<cl.array_Ima[i][j]
 								                  <<"j"<<"      ";
-								                //¸ººÅÕ¼Ò»¸ö×Ö·û 
+								                //è´Ÿå·å ä¸€ä¸ªå­—ç¬¦ 
 				else if(cl.array_Ima[i][j]<0) Ouput<<setw(digit_size+1)<<cl.array_Ima[i][j]
 								                  <<"j"<<"      ";
 			}else Ouput<<setw(digit_size+1+1+6)<<"\0";//Ima+signal+j+Blank
@@ -218,7 +215,7 @@ ostream & operator<<(ostream & Ouput,Matrix & cl){
 	return Ouput;
 }
 
-//´ÓÓÃ»§ÊäÈëµÄ×Ö·û´®ÖĞ¶ÁÈ¡Êµ²¿¡¢Ğé²¿Î»Êı
+//ä»ç”¨æˆ·è¾“å…¥çš„å­—ç¬¦ä¸²ä¸­è¯»å–å®éƒ¨ã€è™šéƒ¨ä½æ•°
 void Matrix::read_digit(string *al){
 	n_Re=n_Ima=0;
 	if((*al)[0]==48&&(*al)[1]=='\0') n_Re=n_Ima=0;
@@ -258,7 +255,7 @@ void Matrix::read_digit(string *al){
 	}
 }
 
-//¶ÁÈ¡¾ØÕóĞĞÊıÁĞÊıµÄº¯Êı
+//è¯»å–çŸ©é˜µè¡Œæ•°åˆ—æ•°çš„å‡½æ•°
 void Matrix::read_size(string *al){
 	n_col=n_row=0;
 	for(int i=0;array[i]!="/"&&array[i]!="//";i++){
@@ -272,17 +269,17 @@ void Matrix::read_size(string *al){
 	n_row++;
 }
 
-//½«ÓÃ»§ÊäÈëµÄ×Ö·û´®Êı¾İ×ª³É¸¡µãÊı
+//å°†ç”¨æˆ·è¾“å…¥çš„å­—ç¬¦ä¸²æ•°æ®è½¬æˆæµ®ç‚¹æ•°
 void Matrix::turn(){
 	double data_Re=0,data_Ima=0;
 	double cal=1;
 	int j=0,k=0;
-	//¶ÁÈ¡¾ØÕóĞĞÊıÁĞÊı 
+	//è¯»å–çŸ©é˜µè¡Œæ•°åˆ—æ•° 
 	read_size(array);
 
 	for(int i=0;array[i]!="//";i++){
 		if(array[i]!="//"&&array[i]!="/"){
-			//¶ÁÈ¡Êµ²¿¡¢Ğé²¿Î»Êı 
+			//è¯»å–å®éƒ¨ã€è™šéƒ¨ä½æ•° 
 			read_digit(array+i);
 			//TEST
 //			cout<<"n_Re:"<<n_Re<<"  n_Ima"<<n_Ima<<endl;
@@ -365,30 +362,30 @@ int main(void){
 	char func;
 	
 	for(char i;;){
-		//²âÊÔ¹¦ÄÜÑ¡Ôñ 
-		cout<<"Func lists:"<<endl;//Õ¹Ê¾¹¦ÄÜ±í 
+		//æµ‹è¯•åŠŸèƒ½é€‰æ‹© 
+		cout<<"Func lists:"<<endl;//å±•ç¤ºåŠŸèƒ½è¡¨ 
 		cout<<"	Enter A to plus array1 and array2"<<endl;
 		cout<<"	Enter B to multiply array1 and array2"<<endl;
 		cout<<"	Enter C to transpose array1"<<endl;
 		cout<<"       	choose func :";
-		cin>>func;//Ñ¡Ôñ ¹¦ÄÜ 
+		cin>>func;//é€‰æ‹© åŠŸèƒ½ 
 		cout<<endl;
 		
-		c1=c2=c3=Matrix();//³õÊ¼»¯ComplexÀà¶ÔÏó 
+		c1=c2=c3=Matrix();//åˆå§‹åŒ–Complexç±»å¯¹è±¡ 
 		
 		cout<<"Enter format should be a+(or -)bj,if a=0,enter 0+(or -)bj"<<endl;
 		cout<<"Enter array1 and array2:\n"<<endl;
 		cout<<"   array1:\n"<<endl;
-		cin>>c1;//ÊäÈë¾ØÕó1 
+		cin>>c1;//è¾“å…¥çŸ©é˜µ1 
 		cout<<endl;
 		cout<<"   array2:\n"<<endl;
-		cin>>c2;//ÊäÈë¾ØÕó2 
+		cin>>c2;//è¾“å…¥çŸ©é˜µ2 
 		cout<<endl;
 		cout<<endl;
-		c1.turn();//×Ö·û´®×ª¸¡µã 
+		c1.turn();//å­—ç¬¦ä¸²è½¬æµ®ç‚¹ 
 		c2.turn();
 		
-		switch(func){//ÒÀ¾İÑ¡ÔñµÄ¹¦ÄÜÖ´ĞĞ 
+		switch(func){//ä¾æ®é€‰æ‹©çš„åŠŸèƒ½æ‰§è¡Œ 
 			case'A':{
 				c3=c1+c2;
 				cout<<"c1+c2="<<endl;
@@ -413,7 +410,7 @@ int main(void){
 				break;
 			}
 		}
-		cout<<"Enter Y to continue and N to quit:";//Ñ¡ÔñÊÇ·ñ¼ÌĞøÔËĞĞ³ÌĞò 
+		cout<<"Enter Y to continue and N to quit:";//é€‰æ‹©æ˜¯å¦ç»§ç»­è¿è¡Œç¨‹åº 
 		redo:;
 		cin>>i;
 		cout<<endl;
